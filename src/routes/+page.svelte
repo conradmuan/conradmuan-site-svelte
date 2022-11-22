@@ -53,13 +53,18 @@
 		<hr class="my-8" />
 		<h2 class="text-xl">👀 Currently Reading</h2>
 		<ul class="list-disc ml-8 mb-4">
-			<li>Cribsheet - Emily Oster</li>
+			<li>Snow Crash - Neal Stephenson</li>
+			<li>
+				Cribsheet: A Data-Driven Guide to Better, More Relaxed Parenting, from Birth to Preschool -
+				Emily Oster
+			</li>
 		</ul>
 		<h2 class="text-xl">📚 Recently Read in 2022</h2>
 		<p>
 			<small>(non-exhaustive)</small>
 		</p>
 		<ul class="list-disc ml-8">
+			<li>The Grace Year: A Novel - Kim Liggett</li>
 			<li>1Q84 - Haruki Murakami</li>
 			<li>Dark Money - Jane Mayer</li>
 			<li>Save the Cat! Writes a Novel</li>
