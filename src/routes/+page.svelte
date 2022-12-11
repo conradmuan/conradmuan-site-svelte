@@ -1,13 +1,17 @@
 <script>
-	import Instagram from '../icons/instagram.svg.svelte';
-	import Email from '../icons/email.svg.svelte';
-	import Twitter from '../icons/twitter.svg.svelte';
-	import LinkedIn from '../icons/linkedIn.svg.svelte';
+	import Homepage from '$lib/components/homepage.svelte';
+	import Instagram from '$lib/icons/instagram.svg.svelte';
+	import Email from '$lib/icons/email.svg.svelte';
+	import Twitter from '$lib/icons/twitter.svg.svelte';
+	import LinkedIn from '$lib/icons/linkedIn.svg.svelte';
+
+	export let data;
+	const { fields } = data;
 </script>
 
 <svelte:head>
 	<title>Conrad Aidan Muan - Software developer and Human Being</title>
-	<meta name="description" content="Software developer and Human Being. F" />
+	<meta name="description" content="Software developer and Human Being." />
 </svelte:head>
 
 <div class="h-screen flex flex-col">
@@ -16,70 +20,7 @@
 	</header>
 	<main class="my-container mx-auto px-4 leading-relaxed mb-auto">
 		<h2 class="text-xl mb-4">Hello, here are some things about me:</h2>
-		<ul class="mb-4">
-			<li>
-				👨‍💻 Software Developer
-				<ul class="ml-8 mb-4">
-					<li>
-						2022: Senior Product Engineer at{' '}
-						<a href="https://facet.ai" target="_blank" class="my-link" rel="noreferrer">
-							Facet.ai
-						</a>
-					</li>
-					<li>
-						2021 - 2022: Staff Engineer at{' '}
-						<a href="https://www.zipper.works" target="_blank" class="my-link" rel="noreferrer">
-							Zipper
-						</a>
-					</li>
-					<li>
-						2016 - 2021: Sr Software Engineer at{' '}
-						<a href="https://slack.com/" target="_blank" class="my-link" rel="noreferrer">
-							Slack
-						</a>{' '}
-						(Platform, Interop and Files)
-					</li>
-					<li>
-						2013 - 2016: Sr Software Engineer at AOL for{' '}
-						<a href="https://www.engadget.com/" target="_blank" class="my-link" rel="noreferrer">
-							Engadget.com
-						</a>
-					</li>
-				</ul>
-			</li>
-			<li>🌎 Toronto - San Francisco - Vancouver</li>
-			<li>📚 Science Fiction, Fantasy, Horror</li>
-		</ul>
-		<hr class="my-8" />
-		<h2 class="text-xl">👀 Currently Reading</h2>
-		<ul class="list-disc ml-8 mb-4">
-			<li>Snow Crash - Neal Stephenson</li>
-			<li>
-				Cribsheet: A Data-Driven Guide to Better, More Relaxed Parenting, from Birth to Preschool -
-				Emily Oster
-			</li>
-		</ul>
-		<h2 class="text-xl">📚 Recently Read in 2022</h2>
-		<p>
-			<small>(non-exhaustive)</small>
-		</p>
-		<ul class="list-disc ml-8">
-			<li>The Grace Year: A Novel - Kim Liggett</li>
-			<li>1Q84 - Haruki Murakami</li>
-			<li>Dark Money - Jane Mayer</li>
-			<li>Save the Cat! Writes a Novel</li>
-			<li>The First Fifteen Lives of Harry August - Claire North</li>
-			<li>Sole Survivor - Dean Koontz</li>
-			<li>Dreamcatcher - Stephen King</li>
-			<li>Talto - Anne Rice</li>
-			<li>Ghost Story - Peter Straub</li>
-			<li>Thinking, Fast &amp; Slow - Daniel Kahneman</li>
-			<li>Lord of the Flies - William Golding</li>
-			<li>The Impossible Girl - Lydia Kang</li>
-			<li>Bird by Bird - Ann Lamott</li>
-			<li>Leviathan Falls - James S. A. Corey</li>
-			<li>On Writing - Stephen King</li>
-		</ul>
+		<Homepage {fields} />
 	</main>
 	<footer class="w-full">
 		<div class="my-container mx-auto px-4 py-10">
@@ -123,3 +64,15 @@
 		</div>
 	</footer>
 </div>
+
+<style>
+	.my-name {
+		font-family: 'Old Standard TT', serif;
+		font-size: 10.5vw;
+		top: -0.3em;
+		transform: rotate(-5deg);
+	}
+	.my-container {
+		max-width: 980px;
+	}
+</style>

@@ -13,12 +13,74 @@
 	max-width: 980px;
 }
 
-@layer base {
-	.my-link {
-		@apply text-blue-600 hover:text-white hover:bg-blue-600;
-	}
+.my-link {
+	@apply text-blue-600 hover:text-white hover:bg-blue-600;
+}
 
-	.my-monochrome-link {
-		@apply hover:text-white hover:bg-black;
-	}
+.my-monochrome-link {
+	@apply hover:text-white hover:bg-black;
+}
+
+.preview {
+	@apply prose;
+}
+
+.button-primary {
+	@apply rounded-md bg-indigo-600 py-2 px-3 text-[0.8125rem] font-semibold leading-5 text-white hover:bg-indigo-500 cursor-pointer;
+}
+
+.button-alternative {
+	@apply rounded-md py-2 px-3 text-[0.8125rem] font-semibold leading-5 bg-slate-900 text-white hover:bg-slate-700 cursor-pointer;
+}
+
+.button {
+	@apply rounded-md py-2 px-3 text-[0.8125rem] font-medium text-slate-700 shadow-sm ring-1 ring-slate-700/10 hover:bg-slate-50 cursor-pointer;
+}
+
+[multiple],
+[type='date'],
+[type='datetime-local'],
+[type='email'],
+[type='month'],
+[type='number'],
+[type='password'],
+[type='search'],
+[type='tel'],
+[type='text'],
+[type='time'],
+[type='url'],
+[type='week'],
+select,
+textarea {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background-color: #fff;
+	border-color: #6b7280;
+	border-width: 1px;
+	border-radius: 0;
+	padding-top: 0.5rem;
+	padding-right: 0.75rem;
+	padding-bottom: 0.5rem;
+	padding-left: 0.75rem;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	--tw-shadow: 0 0 #0000;
+}
+
+/* Notifications */
+.notification-type-default {
+	@apply border-slate-600;
+}
+.notification-type-danger {
+	@apply border-red-600;
+}
+.notification-type-warning {
+	@apply border-yellow-600;
+}
+.notification-type-info {
+	@apply border-blue-600;
+}
+.notification-type-success {
+	@apply border-green-600;
 }
