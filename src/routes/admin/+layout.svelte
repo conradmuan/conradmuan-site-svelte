@@ -12,9 +12,6 @@
 				</li>
 				<li>
 					<a href="/admin/fields">Fields</a>
-					<ul>
-						<li><a href="/admin/fields/create">Create</a></li>
-					</ul>
 				</li>
 			</ul>
 		</div>

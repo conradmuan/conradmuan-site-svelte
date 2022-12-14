@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { marked } from 'marked';
+	import { Modes } from './types';
 	import type { SaveFields } from 'src/routes/admin/fields/create/types';
 
 	export let source: {
@@ -10,23 +11,24 @@
 		value: ''
 	};
 	export let height = 'full';
-	export let onSave: ({ name, value }: SaveFields) => Promise<void>;
+	export let onSave: ({ name, value }: SaveFields) => Promise<void> | void = () => {};
+	export let mode: Modes = Modes.EDIT;
 
 	let { name, value } = source;
-
-	let mode = 'edit';
 	let preview = marked(value);
 
 	$: preview = marked(value);
 
 	const handleClick = () => {
-		mode = mode === 'preview' ? 'edit' : 'preview';
+		mode = mode === Modes.PREVIEW ? Modes.EDIT : Modes.PREVIEW;
 	};
 
 	const handleSave = async (e: Event) => {
 		e.preventDefault();
 		if (onSave) {
 			await onSave({ name, value });
+			name = '';
+			value = '';
 		}
 	};
 </script>
@@ -36,7 +38,7 @@
 		type="text"
 		name="title"
 		id="title"
-		class="my-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+		class="my-1 block w-full rounded-md shadow-sm sm:text-sm p-2"
 		placeholder="Title"
 		bind:value={name}
 	/>
@@ -44,6 +46,7 @@
 		name="rawtext"
 		id="rawtext"
 		bind:value
+		class="py-4 px-2 mb-4"
 		style:--height={height === 'full' ? 'auto' : 'calc(100vh - 10vh)'}
 	/>
 	<button type="button" class="button" on:click={handleClick} disabled={name === '' && value === ''}
@@ -51,7 +54,7 @@
 	>
 {/if}
 {#if mode === 'preview'}
-	<div class="preview p-4" style:--height={height === 'full' ? 'auto' : 'calc(100vh - 10vh)'}>
+	<div class="preview p-4 mb-4" style:--height={height === 'full' ? 'auto' : 'calc(100vh - 10vh)'}>
 		<h1 class="mb-1">{name}</h1>
 		<div>{@html preview}</div>
 	</div>

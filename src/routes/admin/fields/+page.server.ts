@@ -1,10 +1,11 @@
-import { PrismaClient } from '@prisma/client';
+import { error } from '@sveltejs/kit';
+import { prisma } from '$lib/db/prisma';
 
-const prisma = new PrismaClient();
-
-export async function load({ params }: { params: { slug: string } }) {
-	const fields = await prisma.customFields.findMany();
-	return {
-		fields
-	};
+export async function load() {
+	try {
+		const fields = await prisma.customFields.findMany();
+		return fields;
+	} catch (err) {
+		throw error(500, (err as Error).toString());
+	}
 }

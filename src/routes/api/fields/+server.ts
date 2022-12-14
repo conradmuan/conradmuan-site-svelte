@@ -1,15 +1,27 @@
-import { PrismaClient } from '@prisma/client';
 import { json, error } from '@sveltejs/kit';
-
-const prisma = new PrismaClient();
+import { prisma } from '$lib/db/prisma';
 
 export async function GET({ url }: { url: URL }) {
 	const fields = url.searchParams.get('fields')?.split(',');
+	const id = url.searchParams.get('id');
 	if (fields && fields.length > 0) {
 		try {
 			const query = await prisma.customFields.findMany({
 				where: {
 					name: { in: fields }
+				}
+			});
+			return json(query);
+		} catch (e) {
+			throw error(400, (e as Error).toString());
+		}
+	}
+
+	if (id) {
+		try {
+			const query = await prisma.customFields.findFirst({
+				where: {
+					id: parseInt(id, 10)
 				}
 			});
 			return json(query);
@@ -35,5 +47,19 @@ export async function POST({ request }: { request: Request }) {
 		return json(field);
 	} catch (e) {
 		throw error(400, (e as Error).toString());
+	}
+}
+
+export async function DELETE({ request }: { request: Request }) {
+	const { id } = await request.json();
+	try {
+		const field = await prisma.customFields.delete({
+			where: {
+				id
+			}
+		});
+		return json(field);
+	} catch (err) {
+		throw error(500, (err as Error).toString());
 	}
 }
