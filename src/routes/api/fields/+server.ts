@@ -1,3 +1,4 @@
+import { marked } from 'marked';
 import { json, error } from '@sveltejs/kit';
 import { prisma } from '$lib/db/prisma';
 
@@ -36,11 +37,13 @@ export async function GET({ url }: { url: URL }) {
 
 export async function POST({ request }: { request: Request }) {
 	const { name, value } = await request.json();
+	const valueRendered = marked(value);
 	try {
 		const field = await prisma.customFields.create({
 			data: {
 				name,
 				value,
+				valueRendered,
 				dateCreated: new Date()
 			}
 		});
@@ -52,6 +55,7 @@ export async function POST({ request }: { request: Request }) {
 
 export async function PATCH({ request }: { request: Request }) {
 	const { id, name, value } = await request.json();
+	const valueRendered = marked(value);
 	try {
 		const field = await prisma.customFields.update({
 			where: {
@@ -60,6 +64,7 @@ export async function PATCH({ request }: { request: Request }) {
 			data: {
 				name,
 				value,
+				valueRendered,
 				dateUpdated: new Date()
 			}
 		});
