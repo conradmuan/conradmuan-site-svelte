@@ -1,6 +1,5 @@
 import adapter from '@sveltejs/adapter-static';
 import preprocess from 'svelte-preprocess';
-const dev = process.argv.includes('dev');
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -18,9 +17,6 @@ const config = {
 		}),
 		files: {
 			lib: 'src/lib'
-		},
-		paths: {
-			base: dev ? '' : '/conradmuan-site-svelte'
 		}
 	}
 };
