@@ -2,6 +2,7 @@
 	import type { SaveFields } from './types';
 	import Editor from '$lib/components/editor.svelte';
 	import { notifications } from '$lib/stores/notifications';
+	import { goto } from '$app/navigation';
 
 	const onSave = async ({ name, value }: SaveFields) => {
 		const response = await fetch('/api/fields', {
@@ -17,9 +18,14 @@
 		}
 
 		notifications.success('Success!');
+		goto('/admin/fields');
 		return;
 	};
 </script>
+
+<div class="mb-4">
+	<a href="/admin/fields" class="button">Back</a>
+</div>
 
 <div class="p-4 mb-4 border-pink-400 border">
 	<p>

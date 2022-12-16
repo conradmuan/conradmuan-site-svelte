@@ -50,6 +50,25 @@ export async function POST({ request }: { request: Request }) {
 	}
 }
 
+export async function PATCH({ request }: { request: Request }) {
+	const { id, name, value } = await request.json();
+	try {
+		const field = await prisma.customFields.update({
+			where: {
+				id: parseInt(id, 10)
+			},
+			data: {
+				name,
+				value,
+				dateUpdated: new Date()
+			}
+		});
+		return json(field);
+	} catch (e) {
+		throw error(500, (e as Error).toString());
+	}
+}
+
 export async function DELETE({ request }: { request: Request }) {
 	const { id } = await request.json();
 	try {

@@ -10,7 +10,7 @@
 		name: '',
 		value: ''
 	};
-	export let height = 'full';
+	export let height: string = 'auto';
 	export let onSave: ({ name, value }: SaveFields) => Promise<void> | void = () => {};
 	export let mode: Modes = Modes.EDIT;
 
@@ -27,8 +27,6 @@
 		e.preventDefault();
 		if (onSave) {
 			await onSave({ name, value });
-			name = '';
-			value = '';
 		}
 	};
 </script>
@@ -47,14 +45,14 @@
 		id="rawtext"
 		bind:value
 		class="py-4 px-2 mb-4"
-		style:--height={height === 'full' ? 'auto' : 'calc(100vh - 10vh)'}
+		style:--height={height !== 'full' ? 'auto' : 'calc(100vh - 25vh)'}
 	/>
 	<button type="button" class="button" on:click={handleClick} disabled={name === '' && value === ''}
 		>Preview</button
 	>
 {/if}
 {#if mode === 'preview'}
-	<div class="preview p-4 mb-4" style:--height={height === 'full' ? 'auto' : 'calc(100vh - 10vh)'}>
+	<div class="preview p-4 mb-4" style:--height={height !== 'full' ? 'auto' : 'calc(100vh - 25vh)'}>
 		<h1 class="mb-1">{name}</h1>
 		<div>{@html preview}</div>
 	</div>
