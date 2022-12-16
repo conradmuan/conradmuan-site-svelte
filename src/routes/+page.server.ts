@@ -3,14 +3,22 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export async function load() {
-	const fields = await prisma.customFields.findFirst({
+	const homeFields = await prisma.customFields.findMany({
 		where: {
-			name: 'homepage'
+			OR: [
+				{ name: 'home-page-cv' },
+				{
+					name: 'currently-reading'
+				},
+				{
+					name: 'recently-read-2022'
+				}
+			]
 		}
 	});
-	if (fields) {
-		return fields;
+	if (homeFields) {
+		return homeFields;
 	}
 
-	return { fields: [] };
+	return {};
 }

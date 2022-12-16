@@ -88,3 +88,16 @@ textarea {
 .notification-type-success {
 	@apply border-green-600;
 }
+
+/* Homepage */
+.homepage ul ul {
+	@apply ml-8 mb-4;
+}
+
+.homepage a {
+	@apply text-blue-600 hover:text-white hover:bg-blue-600;
+}
+
+.homepage-read ul {
+	@apply list-disc ml-8;
+}

@@ -1,11 +1,14 @@
+import { marked } from 'marked';
 import { json, error } from '@sveltejs/kit';
 import { prisma } from '$lib/db/prisma';
 
 export async function POST({ request }: { request: Request }) {
 	const { title, content, published } = await request.json();
+	const titleRendered = marked(title);
+	const contentRendered = marked(content);
 	try {
 		const post = await prisma.posts.create({
-			data: { title, content, published, dateCreated: new Date() }
+			data: { title, titleRendered, content, contentRendered, published, dateCreated: new Date() }
 		});
 		return json(post);
 	} catch (e) {
@@ -15,6 +18,8 @@ export async function POST({ request }: { request: Request }) {
 
 export async function PATCH({ request }: { request: Request }) {
 	const { id, title, content, published } = await request.json();
+	const titleRendered = marked(title);
+	const contentRendered = marked(content);
 	try {
 		const post = await prisma.posts.update({
 			where: {
@@ -22,7 +27,9 @@ export async function PATCH({ request }: { request: Request }) {
 			},
 			data: {
 				title,
+				titleRendered,
 				content,
+				contentRendered,
 				published,
 				dateUpdated: new Date()
 			}
