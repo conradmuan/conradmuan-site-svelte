@@ -25,7 +25,4 @@
 	a {
 		text-decoration: underline;
 	}
-	li ul {
-		margin-left: 1rem;
-	}
 </style>
