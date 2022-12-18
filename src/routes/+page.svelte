@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { CustomFields } from '.prisma/client';
+	import type { CustomFields, Posts } from '.prisma/client';
 	import Homepage from '$lib/components/homepage.svelte';
 	import Instagram from '$lib/icons/instagram.svg.svelte';
 	import Email from '$lib/icons/email.svg.svelte';
@@ -7,9 +7,10 @@
 	import LinkedIn from '$lib/icons/linkedIn.svg.svelte';
 
 	export let data: {
-		[key: string]: CustomFields;
+		homeFields: CustomFields[];
+		posts: Posts[];
 	};
-	const homeFields = Object.values(data);
+	const { homeFields, posts } = data;
 </script>
 
 <svelte:head>

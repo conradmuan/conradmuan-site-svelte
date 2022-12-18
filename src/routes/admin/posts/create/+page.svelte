@@ -5,12 +5,12 @@
 
 	let published: boolean = false;
 
-	const onSave = async ({ name, value }: { name: string; value: string }) => {
+	const onSave = async ({ name, value, slug }: { name: string; value: string; slug: string }) => {
 		const title = name;
 		const content = value;
 		const resp = await fetch('/api/posts', {
 			method: 'POST',
-			body: JSON.stringify({ title, content, published }),
+			body: JSON.stringify({ title, content, slug, published }),
 			headers: {
 				'content-type': 'application/json'
 			}

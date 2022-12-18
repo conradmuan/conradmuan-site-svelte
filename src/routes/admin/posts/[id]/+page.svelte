@@ -6,13 +6,21 @@
 	import type { Posts } from '.prisma/client';
 
 	export let data: Posts;
-	let { id, content, title, published } = data;
-	const source = { name: title, value: content ?? '' };
+	let { id, content, title, published, slug } = data;
+	const source = { name: title, value: content ?? '', slug };
 
-	const handleUpdate = async ({ name, value }: { name: string; value: string }) => {
+	const handleUpdate = async ({
+		name,
+		value,
+		slug
+	}: {
+		name: string;
+		value: string;
+		slug: string;
+	}) => {
 		const resp = await fetch('/api/posts', {
 			method: 'PATCH',
-			body: JSON.stringify({ id, title: name, content: value, published }),
+			body: JSON.stringify({ id, title: name, content: value, slug, published }),
 			headers: {
 				'content-type': 'application/json'
 			}
