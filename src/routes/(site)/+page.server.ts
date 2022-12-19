@@ -1,6 +1,5 @@
-import { PrismaClient, type CustomFields, type Posts } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import type { CustomFields, Posts } from '@prisma/client';
+import { prisma } from '$lib/db/prisma';
 
 export async function load() {
 	const ret: {
@@ -18,7 +17,7 @@ export async function load() {
 					name: 'currently-reading'
 				},
 				{
-					name: 'recently-read-2022'
+					name: 'quick-cv'
 				}
 			]
 		}
