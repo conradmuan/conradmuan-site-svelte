@@ -2,17 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.my-name {
-	font-family: 'Old Standard TT', serif;
-	font-size: 10.5vw;
-	top: -0.3em;
-	transform: rotate(-5deg);
-}
-
-.my-container {
-	max-width: 980px;
-}
-
 .my-link {
 	@apply text-blue-600 hover:text-white hover:bg-blue-600;
 }

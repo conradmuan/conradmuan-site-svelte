@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Flash from '$lib/components/notifications.svelte';
+	import '$lib/style.css';
 </script>
 
 <main class="container">

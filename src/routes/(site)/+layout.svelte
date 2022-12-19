@@ -1,16 +1,11 @@
-<script lang="ts">
-	import type { CustomFields, Posts } from '.prisma/client';
-	import Homepage from '$lib/components/homepage.svelte';
+<script>
+	import { page } from '$app/stores';
 	import Instagram from '$lib/icons/instagram.svg.svelte';
 	import Email from '$lib/icons/email.svg.svelte';
 	import Twitter from '$lib/icons/twitter.svg.svelte';
 	import LinkedIn from '$lib/icons/linkedIn.svg.svelte';
 
-	export let data: {
-		homeFields: CustomFields[];
-		posts: Posts[];
-	};
-	const { homeFields, posts } = data;
+	import '$lib/style.css';
 </script>
 
 <svelte:head>
@@ -20,16 +15,16 @@
 
 <div class="h-screen flex flex-col">
 	<header class="mb-32 md:mb-40 lg:mb-64">
-		<h1 class="my-name absolute">Conrad Aidan Muan</h1>
+		<h1 class="my-name absolute opacity-10">Conrad Aidan Muan</h1>
 	</header>
-	<main class="my-container mx-auto px-4 leading-relaxed mb-auto">
-		<h2 class="text-xl mb-4">Hello, here are some things about me:</h2>
-		<Homepage {homeFields} />
+	<main class="container mx-auto px-4 leading-relaxed mb-auto prose lg:prose-xl">
+		{#if $page.route.id !== '/(site)'}<a href="/">← Home</a>{/if}
+		<slot />
 	</main>
-	<footer class="w-full">
-		<div class="my-container mx-auto px-4 py-10">
+	<footer class="container prose lg:prose-xl mx-auto">
+		<div class=" px-4 py-10">
 			<h2 class="text-lg sm:text-xl">Contact</h2>
-			<ul class="sm:flex sm:space-x-4">
+			<ul class="sm:flex sm:space-x-4 list-none">
 				<li>
 					<LinkedIn className={'inline-block'} />{' '}
 					<a
@@ -73,10 +68,6 @@
 	.my-name {
 		font-family: 'Old Standard TT', serif;
 		font-size: 10.5vw;
-		top: -0.3em;
-		transform: rotate(-5deg);
-	}
-	.my-container {
-		max-width: 980px;
+		top: -0.66em;
 	}
 </style>
