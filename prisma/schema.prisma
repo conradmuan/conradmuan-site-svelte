@@ -18,7 +18,7 @@ model Posts {
   titleRendered   String
   contentRendered String?
   published       Boolean   @default(false)
-  dateCreated     DateTime
+  dateCreated     DateTime  @updatedAt
   dateUpdated     DateTime?
 }
 
@@ -28,6 +28,52 @@ model CustomFields {
   name          String    @unique
   value         String?
   valueRendered String?
-  dateCreated   DateTime
+  dateCreated   DateTime  @updatedAt
   dateUpdated   DateTime?
+}
+
+model Book {
+  id            Int                     @id @default(autoincrement())
+  title         String
+  subtitle      String?
+  description   String?
+  thumbnail     String?
+  publishedDate DateTime?
+  dateCreated   DateTime                @updatedAt
+  authors       AuthorsOnBook[]
+  categories    BookCategoriesOnBooks[]
+}
+
+model Authors {
+  id            Int             @id @default(autoincrement())
+  name          String          @unique
+  dateCreated   DateTime        @updatedAt
+  AuthorsOnBook AuthorsOnBook[]
+}
+
+model AuthorsOnBook {
+  id       Int     @id @default(autoincrement())
+  book     Book    @relation(fields: [bookId], references: [id])
+  bookId   Int
+  author   Authors @relation(fields: [authorId], references: [id])
+  authorId Int
+
+  @@index([bookId, authorId])
+}
+
+model BookCategories {
+  id                    Int                     @id @default(autoincrement())
+  category              String                  @unique
+  dateCreated           DateTime                @updatedAt
+  BookCategoriesOnBooks BookCategoriesOnBooks[]
+}
+
+model BookCategoriesOnBooks {
+  id             Int            @id @default(autoincrement())
+  book           Book           @relation(fields: [bookId], references: [id])
+  bookId         Int
+  bookCategory   BookCategories @relation(fields: [bookCategoryId], references: [id])
+  bookCategoryId Int
+
+  @@index([bookId, bookCategoryId])
 }
