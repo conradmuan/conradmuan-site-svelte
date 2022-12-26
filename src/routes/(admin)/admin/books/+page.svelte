@@ -27,6 +27,9 @@
 			notifications.warning('Book not found');
 			return;
 		}
+		if (!confirm('Are you sure? This cannot be undone')) {
+			return;
+		}
 		const req = await fetch('/api/books', {
 			method: 'DELETE',
 			headers: {
@@ -57,8 +60,8 @@
 				{#if book.subtitle}<h2 class="mb-2 font-bold">{book.subtitle}</h2>{/if}
 				{#if book.authors.length > 0}<h3 class="mb-2">
 						By:
-						{#each book.authors as authors (authors.id)}
-							{authors.author.name}{#if !lastItem(books, idx)}, {/if}
+						{#each book.authors as authors, ida}
+							{authors.author.name}{#if !lastItem(book.authors, ida)}, {/if}
 						{/each}
 					</h3>{/if}
 				{#if book.description}
@@ -69,8 +72,8 @@
 				{#if book.categories.length > 0}
 					<p>
 						<strong>Filed under:</strong>
-						{#each book.categories as categories (categories.id)}
-							{categories.bookCategory.category}{#if !lastItem(books, idx)}, {/if}
+						{#each book.categories as categories, idc}
+							{categories.bookCategory.category}{#if !lastItem(book.categories, idc)}, {/if}
 						{/each}
 					</p>
 				{/if}
