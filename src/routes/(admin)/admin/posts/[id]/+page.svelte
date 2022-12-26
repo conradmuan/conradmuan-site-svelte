@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import Editor from '$lib/components/editor.svelte';
-	import { Modes } from '$lib/components/types';
+	import { Modes } from '$lib/components/types/modes';
 	import { notifications } from '$lib/stores/notifications';
 	import type { Posts } from '.prisma/client';
 
