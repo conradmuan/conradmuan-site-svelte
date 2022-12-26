@@ -5,7 +5,7 @@
 </script>
 
 {#if notifs.length > 0}
-	<div class="notifications ">
+	<div class="notifications bg-white">
 		{#each notifs as notification}
 			<div class="border p-4 w-96 notification-type-{notification.type}">
 				{notification.message}
