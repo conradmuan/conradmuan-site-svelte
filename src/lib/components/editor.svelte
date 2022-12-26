@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { marked } from 'marked';
-	import { Modes } from './types';
+	import { Modes } from './types/modes';
 	import type { SaveFields } from 'src/routes/(admin)/admin/fields/create/types';
 
 	export let source: {
