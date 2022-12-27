@@ -6,9 +6,6 @@ export async function load() {
 		where: {
 			OR: [
 				{
-					name: 'recently-read-2022'
-				},
-				{
 					name: 'currently-reading'
 				},
 				{
@@ -18,9 +15,29 @@ export async function load() {
 		}
 	});
 
-	if (!read) {
+	const books = await prisma.book.findMany({
+		where: {
+			dateCreated: {
+				lte: new Date('2022-12-31')
+			}
+		},
+		include: {
+			authors: {
+				include: {
+					author: true
+				}
+			},
+			categories: {
+				include: {
+					bookCategory: true
+				}
+			}
+		}
+	});
+
+	if (!read || !books) {
 		throw error(404);
 	}
 
-	return { read };
+	return { read, books };
 }
