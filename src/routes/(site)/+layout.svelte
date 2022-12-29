@@ -9,8 +9,13 @@
 </script>
 
 <svelte:head>
-	<title>Conrad Aidan Muan - Software developer and Human Being</title>
-	<meta name="description" content="Software developer and Human Being." />
+	<title
+		>{$page.data.metadata?.title || `Conrad Aidan Muan - Software developer and Human Being`}</title
+	>
+	<meta
+		name="description"
+		content={$page.data.metadata?.description || `Software developer and Human Being.`}
+	/>
 </svelte:head>
 
 <div class="h-screen flex flex-col">
