@@ -25,7 +25,11 @@ export async function load() {
 	const posts = await prisma.posts.findMany({
 		where: {
 			published: true
-		}
+		},
+		orderBy: {
+			dateCreated: 'desc'
+		},
+		take: 3
 	});
 	if (homeFields) {
 		ret.homeFields = homeFields;
