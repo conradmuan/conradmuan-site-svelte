@@ -7,5 +7,12 @@ export const load: Load = async () => {
 			published: true
 		}
 	});
-	return { posts };
+
+	const field = await prisma.customFields.findFirst({
+		where: {
+			name: 'blog-archive'
+		}
+	});
+
+	return { posts, field };
 };

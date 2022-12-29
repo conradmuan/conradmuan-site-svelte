@@ -1,10 +1,11 @@
 <script lang="ts">
-	import type { Posts } from '@prisma/client';
+	import type { CustomFields, Posts } from '@prisma/client';
 	import { niceDate } from '$lib/utils/date';
 	export let data: {
 		posts: Posts[];
+		field: CustomFields;
 	};
-	const { posts } = data;
+	const { posts, field } = data;
 </script>
 
 <div class="mt-4">
@@ -17,6 +18,10 @@
 		{/each}
 	{:else}
 		<p>None yet.</p>
+	{/if}
+	<hr />
+	{#if field}
+		{@html field.valueRendered}
 	{/if}
 </div>
 

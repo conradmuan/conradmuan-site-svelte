@@ -5,7 +5,6 @@
 		post: Posts;
 	};
 	const { post } = data;
-	console.log(post);
 </script>
 
 <div class="blog-post mt-8">
