@@ -12,5 +12,15 @@ export const load: Load = async ({ params }) => {
 			slug
 		}
 	});
-	return { post };
+
+	if (!post) {
+		throw error(404);
+	}
+
+	const metadata = {
+		title: `Conrad Muan - Blog - ${post.title}`,
+		description: `${post.content?.substring(0, 140)}...`
+	};
+
+	return { post, metadata };
 };

@@ -98,7 +98,6 @@
 	.preview {
 		width: 100%;
 		max-width: none;
-		height: var(--height);
 		border: 1px solid #cccc;
 	}
 </style>

@@ -16,7 +16,7 @@
 <div class="grid grid-cols-2 gap-4">
 	<div>
 		<h3>👀 Recent Blog Posts</h3>
-		{#if posts}
+		{#if posts.length > 0}
 			{#each posts as post}
 				<div>
 					<h4 class="title"><a href={`/blog/${post.slug}`}>{@html post.title}</a></h4>
