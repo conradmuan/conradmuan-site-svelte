@@ -35,7 +35,7 @@
 
 	const slugify = (str: string) => {
 		const nonAlphaNumeric = /[^A-Za-z0-9\s]/g;
-		return str.replace(nonAlphaNumeric, '').replace(' ', '-').toLowerCase();
+		return str.replace(nonAlphaNumeric, '').replaceAll(' ', '-').toLowerCase();
 	};
 </script>
 
