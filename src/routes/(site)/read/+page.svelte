@@ -1,9 +1,12 @@
 <script lang="ts">
-	import type { CustomFields } from '@prisma/client';
-	export let data: {
-		read: CustomFields;
-	};
-	const { read } = data;
+	import type { PageData } from './$types';
+	export let data: PageData;
+
+	const { years } = data;
 </script>
 
-{@html read.valueRendered}
+<ul>
+	{#each years as year, i}
+		<li><a href={`read/${year}`}>{year}</a></li>
+	{/each}
+</ul>
