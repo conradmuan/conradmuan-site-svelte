@@ -1,7 +1,19 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import Flash from '$lib/components/notifications.svelte';
 	import '$lib/style.css';
+
+	const handleClick = async (e: Event) => {
+		e.preventDefault();
+		await fetch('/logout', { method: 'GET' });
+		goto('/login');
+	};
 </script>
+
+<svelte:head>
+	<title>Admin</title>
+	<meta name="robots" content="none" />
+</svelte:head>
 
 <main class="container">
 	<div class="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:h-screen">
@@ -16,6 +28,7 @@
 						<a href="/admin/fields">Fields</a>
 					</li>
 					<li><a href="/admin/books">Books</a></li>
+					<li><a href="/logout" on:click={handleClick}>Logout</a></li>
 				</ul>
 			</div>
 		</div>
