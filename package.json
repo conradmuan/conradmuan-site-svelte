@@ -46,6 +46,7 @@
 		"@sveltejs/adapter-static": "^1.0.0",
 		"@types/marked": "^4.0.7",
 		"bcryptjs": "^2.4.3",
+		"dotenv": "^16.0.3",
 		"lodash": "^4.17.21",
 		"marked": "^4.2.3",
 		"prisma": "^4.6.1",
