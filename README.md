@@ -19,6 +19,8 @@ I prefer `yarn` but there's nothing wrong with `npm`. Please also refer to `.nod
 1. `yarn` install all the things
 2. cp `.env.example` to `.env` -- more info on .env below
 3. `touch path/to/database-file.db` for your sqlite db
+4. `yarn prisma migrate dev` to run migrations
+5. `yarn ts-node createUser.ts` to run a user creation script
 
 ### .env File
 
