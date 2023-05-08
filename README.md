@@ -1,38 +1,37 @@
-# create-svelte
+# My Personal Site
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+_yay_
 
-## Creating a project
+I used to build my website and serve it from a `/docs` directory as [Github pages](https://pages.github.com/). But needs have changed (ie, I don't want to build the site everytime I update it) so it is now hosted on a teeny shared server: https://www.conradmuan.com.
 
-If you're seeing this, you've probably already done this step. Congrats!
+In the meantime, I'm keeping the repo to my site public in case it's helpful or useful for someone else building a site in sveltekit.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+This site's stack is:
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+1. [svelte](https://svelte.dev/) and [sveltekit](https://kit.svelte.dev/)
+2. [sqlite](https://sqlite.org/index.html) as a db with [Prisma](https://www.prisma.io/) ORM
+3. Builds with [node adapter](https://kit.svelte.dev/docs/adapter-node) - so it's meant to be run on your own server.
 
-## Developing
+# Development
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+I prefer `yarn` but there's nothing wrong with `npm`. Please also refer to `.node-version`.
 
-```bash
-npm run dev
+1. `yarn` install all the things
+2. cp `.env.example` to `.env` -- more info on .env below
+3. `touch path/to/database-file.db` for your sqlite db
+4. `yarn prisma migrate dev` to run migrations
+5. `yarn ts-node createUser.ts` to run a user creation script
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+### .env File
 
-## Building
+- `DATABASE_URL` - relative path to the `path/to/database-file.db` set above
+- `PUBLIC_GAPI_KEY` - Google API key. This site pulls book data using the [google books api](https://developers.google.com/books/docs/v1/reference/volumes/list)
+- `SESSION_KEY` - this is the cookie name for local auth
 
-To create a production version of your app:
+# Prod
 
-```bash
-npm run build
-```
+- `yarn build` - will create a `/build` directory
+- `node -r dotenv/config build` to run the production version
+- using `pm2`: `pm2 start ecosystem.config.cjs`
 
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+\*Note: `ecosystem.config.cjs` is a pm2 config file specific to my site.

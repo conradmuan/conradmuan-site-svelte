@@ -77,3 +77,21 @@ model BookCategoriesOnBooks {
 
   @@index([bookId, bookCategoryId])
 }
+
+model Users {
+  id          Int        @id @default(autoincrement())
+  username    String
+  email       String
+  password    String
+  dateCreated DateTime   @updatedAt
+  dateUpdated DateTime?
+  sessions    Sessions[]
+}
+
+model Sessions {
+  id          String   @id @default(uuid())
+  userId      Int
+  user        Users    @relation(fields: [userId], references: [id])
+  dateCreated DateTime @updatedAt
+  dateExpires DateTime
+}
