@@ -41,7 +41,7 @@
 	<li><a href="/read/2023">2023 Reads</a></li>
 </ul>
 
-<style>
+<style lang="postcss">
 	.nav {
 		margin: 2rem 0 2rem 0;
 		padding: 2rem 0 2rem 0;

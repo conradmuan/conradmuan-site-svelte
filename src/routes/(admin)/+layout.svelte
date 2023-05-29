@@ -38,7 +38,7 @@
 
 <Flash />
 
-<style>
+<style lang="postcss">
 	a {
 		text-decoration: underline;
 	}

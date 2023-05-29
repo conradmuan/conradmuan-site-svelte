@@ -69,7 +69,7 @@
 	</footer>
 </div>
 
-<style>
+<style lang="postcss">
 	.my-name {
 		font-family: 'Old Standard TT', serif;
 		font-size: 10.5vw;

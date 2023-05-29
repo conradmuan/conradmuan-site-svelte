@@ -13,7 +13,7 @@
 	{@html post.contentRendered}
 </div>
 
-<style>
+<style lang="postcss">
 	.date {
 		font-size: 0.75rem;
 		margin-top: -1.5rem;

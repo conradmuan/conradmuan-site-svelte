@@ -163,7 +163,7 @@
 	</p>
 </div>
 
-<style>
+<style lang="postcss">
 	.book-img {
 		margin: 0;
 	}
