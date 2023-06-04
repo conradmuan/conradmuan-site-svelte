@@ -14,7 +14,7 @@
 	</div>
 {/if}
 
-<style>
+<style lang="postcss">
 	.notifications {
 		position: absolute;
 		right: 1rem;

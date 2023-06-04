@@ -81,7 +81,7 @@
 	on:click={handleSave}>Save</button
 >
 
-<style>
+<style lang="postcss">
 	#title {
 		font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode',
 			Geneva, Verdana, sans-serif;

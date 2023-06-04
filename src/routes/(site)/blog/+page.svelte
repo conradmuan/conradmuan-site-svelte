@@ -25,7 +25,7 @@
 	{/if}
 </div>
 
-<style>
+<style lang="postcss">
 	.title {
 		font-size: 1.5rem;
 		font-weight: normal;
