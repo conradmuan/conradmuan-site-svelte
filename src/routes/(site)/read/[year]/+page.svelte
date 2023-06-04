@@ -13,7 +13,7 @@
 	const intro = read.find((rd) => rd.name === 'recently-read-2022-intro');
 	const currentRead = read.find((rd) => rd.name === 'currently-reading');
 
-	type SingleBook = typeof books[0];
+	type SingleBook = (typeof books)[0];
 	let singleBook: SingleBook | undefined;
 
 	const categories = Array.from(categoryMap, ([id, category]) => ({ id, category }));

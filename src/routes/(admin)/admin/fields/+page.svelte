@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { CustomFields } from '.prisma/client';
 	export let data: {
-		[key: string]: CustomFields;
+		fields: CustomFields[];
 	};
-	const fields: CustomFields[] = Object.values(data);
+	const { fields } = data;
 </script>
 
 <div>

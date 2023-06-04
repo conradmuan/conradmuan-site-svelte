@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { Posts } from '.prisma/client';
 	export let data: {
-		[key: string]: Posts;
+		posts: Posts[];
 	};
-	const posts: Posts[] = Object.values(data);
+	const { posts } = data;
 
 	const truncate = (content: string) => `${content.substring(0, 300)}...`;
 </script>
