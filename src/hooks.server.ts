@@ -1,8 +1,9 @@
 import type { Handle } from '@sveltejs/kit';
 import { prisma } from '$lib/db/prisma';
+import { SESSION_KEY } from '$env/static/private';
 
 export const handle: Handle = async ({ event, resolve }) => {
-	const sessionId = event.cookies.get(process.env.SESSION_KEY || 'sessionId');
+	const sessionId = event.cookies.get(SESSION_KEY || 'sessionId');
 	if (event.url.pathname.startsWith('/admin') && sessionId) {
 		const userSession = await prisma.sessions.findFirst({
 			where: {
