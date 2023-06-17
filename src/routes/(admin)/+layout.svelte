@@ -28,6 +28,7 @@
 						<a href="/admin/fields">Fields</a>
 					</li>
 					<li><a href="/admin/books">Books</a></li>
+					<li><a href="/admin/files">Files</a></li>
 					<li><a href="/logout" on:click={handleClick}>Logout</a></li>
 				</ul>
 			</div>

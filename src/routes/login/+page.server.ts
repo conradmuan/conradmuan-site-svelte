@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs';
 import { uuid } from 'uuidv4';
 import { error, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types.js';
+import { SESSION_KEY } from '$env/static/private';
 
 import { prisma } from '$lib/db/prisma';
 
@@ -63,7 +64,7 @@ export const actions: Actions = {
 			}
 		});
 
-		cookies.set(process.env.SESSION_KEY || 'sessionId', session.id, {
+		cookies.set(SESSION_KEY || 'sessionId', session.id, {
 			expires: dateExpires
 		});
 
