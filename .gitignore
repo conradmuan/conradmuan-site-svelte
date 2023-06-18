@@ -9,3 +9,5 @@ node_modules
 *.db
 *.db-journal
 static/**/*
+ecosystem.config.js
+

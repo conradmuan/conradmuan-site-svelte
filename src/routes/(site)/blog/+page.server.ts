@@ -5,6 +5,9 @@ export const load: Load = async () => {
 	const posts = await prisma.posts.findMany({
 		where: {
 			published: true
+		},
+		orderBy: {
+			dateCreated: 'desc'
 		}
 	});
 

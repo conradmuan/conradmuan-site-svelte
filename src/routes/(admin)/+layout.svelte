@@ -20,6 +20,7 @@
 		<div class="lg:col-span-3 relative">
 			<div class="absolute bg-slate-300 shadow-lg p-8 lg:inset-y-0 lg:inset-x-0">
 				<ul>
+					<li><a href="/">Home</a></li>
 					<li><a href="/admin">Admin</a></li>
 					<li>
 						<a href="/admin/posts">Posts</a>
