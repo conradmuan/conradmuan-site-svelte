@@ -39,6 +39,7 @@
 	<li><a href="/blog">Blog Posts</a></li>
 	<li><a href="/read/2022">2022 Reads</a></li>
 	<li><a href="/read/2023">2023 Reads</a></li>
+	<li><a href="/read/2024">2024 Reads</a></li>
 </ul>
 
 <style lang="postcss">
