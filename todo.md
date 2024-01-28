@@ -15,3 +15,5 @@ Block content types are a good idea. But we shouldn't need to do a build in orde
   - CMS schema (done)
 - Site (like a theme)
   - Site schema
+
+Having a site schema would negate the (site) group route in sveltekit. The (site) group route had application defined routes that should go into a site schema. But since sveltekit is a file based router, how would we allow for user defined routes? Maybe rest parameters https://kit.svelte.dev/docs/advanced-routing#further-reading - this seems to work but will definitely require a matcher. How will this work for SEO / prerendering
