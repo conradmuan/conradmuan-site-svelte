@@ -7,17 +7,12 @@
 		BookCategories,
 		BookCategoriesOnBooks
 	} from '@prisma/client';
-	export let data: {
-		books: (Book & {
-			authors: (AuthorsOnBook & {
-				author: Authors;
-			})[];
-			categories: (BookCategoriesOnBooks & {
-				bookCategory: BookCategories;
-			})[];
-		})[];
-	};
-	let { books } = data;
+	import type { PageData } from './$types';
+	import Pagination from '$lib/components/pagination.svelte';
+
+	export let data: PageData;
+
+	let { books, pages } = data;
 
 	const lastItem = (arr: Array<any>, i: number) => i === arr.length - 1;
 
@@ -46,9 +41,13 @@
 		books = updatedBooks;
 		notifications.success('Success!');
 	};
+
+	const { currentPage } = data;
 </script>
 
 <div class="mb-4"><a href="/admin/books/create" class="button">Create a book record</a></div>
+
+<Pagination {pages} limit={3} {currentPage} />
 
 {#if books.length > 0}
 	{#each books as book, idx}
