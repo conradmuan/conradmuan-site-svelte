@@ -7,12 +7,30 @@
 
 	let query: string = '';
 	let volumes: VolumeInfo[] = [];
+	let startIndex = 0;
+	let maxResults = 10;
+	let hasMore = false;
+	let hasLess = false;
 
 	const handleSubmit = async () => {
-		const QUERY = `${GOOGLE_BOOKS_API}?q=${query}&key=${PUBLIC_GAPI_KEY}`;
+		const QUERY = `${GOOGLE_BOOKS_API}?q=${query}&key=${PUBLIC_GAPI_KEY}&startIndex=${startIndex}`;
 		const req = await fetch(QUERY);
 		const res = await req.json();
+		const { totalItems } = res;
 		volumes = res.items.map((item: { [key: string]: any }) => item.volumeInfo);
+		const pages = Math.floor(totalItems / maxResults);
+		hasMore = startIndex / maxResults < pages;
+		hasLess = startIndex >= maxResults;
+	};
+
+	const nextPage = () => {
+		startIndex = startIndex + 10;
+		handleSubmit();
+	};
+
+	const prevPage = () => {
+		startIndex = startIndex - 10;
+		handleSubmit();
 	};
 
 	const addBook = async (vol: VolumeInfo) => {
@@ -53,6 +71,18 @@
 </form>
 
 {#if volumes && volumes.length > 0}
+	{#if hasMore || hasLess}
+		<div class="flex space-x-4 mb-8 w-full">
+			{#if hasLess}
+				<button class="px-4 py-2 border border-color-blue-400" on:click={prevPage}>Last Page</button
+				>
+			{/if}
+			{#if hasMore}
+				<button class="px-4 py-2 border border-color-blue-400" on:click={nextPage}>Next page</button
+				>
+			{/if}
+		</div>
+	{/if}
 	{#each volumes as volume (volume)}
 		<div class="flex space-x-4 mb-8 w-full">
 			<div class="flex-initial w-1/6">
