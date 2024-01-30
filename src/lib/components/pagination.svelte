@@ -1,7 +1,10 @@
 <script lang="ts">
+	import { noop } from 'svelte/internal';
+
 	export let pages: number;
 	export let limit: number = -1;
 	export let currentPage: number = 1;
+	export let onClick: (num: number) => void = noop;
 
 	const lastPage = Math.floor(pages);
 
@@ -15,18 +18,19 @@
 	const hasSkipPages = lastPage !== pageNumbers[pageNumbers.length - 1];
 </script>
 
-<div>
+<div class="flex justify-center gap-x-2">
 	{#if currentPage !== 1}
 		<button
+			class="incremental"
 			on:click={() => {
-				console.log('handle', currentPage - 1);
+				onClick(currentPage - 1);
 			}}>Back</button
 		>
 	{/if}
 	{#each pageNumbers as pageNumber}
 		<button
 			on:click={() => {
-				console.log('handle', pageNumber);
+				onClick(pageNumber);
 			}}>{pageNumber}</button
 		>
 	{/each}
@@ -36,15 +40,26 @@
 	{#if hasSkipPages && lastPage !== currentPage}
 		<button
 			on:click={() => {
-				console.log('handle', lastPage);
+				onClick(lastPage);
 			}}>{lastPage}</button
 		>
 	{/if}
 	{#if currentPage !== lastPage}
 		<button
+			class="incremental"
 			on:click={() => {
-				console.log('handle', currentPage + 1);
+				onClick(currentPage + 1);
 			}}>Next</button
 		>
 	{/if}
 </div>
+
+<style lang="postcss">
+	button:not(.incremental) {
+		@apply w-4 border border-blue-400;
+	}
+
+	.incremental {
+		@apply border border-blue-400 px-4;
+	}
+</style>

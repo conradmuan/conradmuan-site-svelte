@@ -9,6 +9,8 @@
 	} from '@prisma/client';
 	import type { PageData } from './$types';
 	import Pagination from '$lib/components/pagination.svelte';
+	import { goto } from '$app/navigation';
+	import { browser } from '$app/environment';
 
 	export let data: PageData;
 
@@ -43,13 +45,19 @@
 	};
 
 	const { currentPage } = data;
+
+	const onPaginationClick = (pageNum: number) => {
+		const pathname = window.location.pathname;
+		const params = new URLSearchParams();
+		params.set('page', pageNum.toString());
+		window.location.replace('?' + params.toString());
+	};
 </script>
 
 <div class="mb-4"><a href="/admin/books/create" class="button">Create a book record</a></div>
 
-<Pagination {pages} limit={3} {currentPage} />
-
 {#if books.length > 0}
+	<Pagination {pages} limit={3} {currentPage} onClick={onPaginationClick} />
 	{#each books as book, idx}
 		<div class="flex space-x-4 mb-8">
 			<div>{book.id}</div>
@@ -84,4 +92,5 @@
 			</div>
 		</div>
 	{/each}
+	<Pagination {pages} limit={3} {currentPage} onClick={onPaginationClick} />
 {/if}

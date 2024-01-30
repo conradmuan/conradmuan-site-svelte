@@ -4,7 +4,7 @@ import { PAGINATION_LIMIT } from '$lib/constants';
 
 export async function load({ url }) {
 	const { searchParams } = url;
-	const page = (searchParams.get('page') as unknown as number) ?? 1;
+	const page = searchParams.get('page') ? parseInt(searchParams.get('page') as string, 10) : 1;
 	const take = PAGINATION_LIMIT;
 	const skip = (page - 1) * PAGINATION_LIMIT;
 	try {

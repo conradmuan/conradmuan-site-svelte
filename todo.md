@@ -9,6 +9,9 @@
 - [ ] update sveltekit
 - [ ] probably replace .server.ts so that requests are reactive instead of full page load
 
+# Medium term TODOs
+- [ ] the admin site does full page reloads and doesn't feel like a SPA
+
 # Long Term TODOs
 Block content types are a good idea. But we shouldn't need to do a build in order to change which blocks go where. The user should be able to set where blocks go. That means that we should have another layer of abstraction above the CMS backend.
 
