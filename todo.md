@@ -1,7 +1,7 @@
 # Short Term TODOs
 
-- [ ] pagination on book search
-- [ ] pagination on book list
+- [x] pagination on book search
+- [x] pagination on book list
 - [ ] double check google light house optimization
 - [ ] better build script
     - [ ] automatically switch from green to blue
