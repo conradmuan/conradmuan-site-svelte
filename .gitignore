@@ -10,4 +10,6 @@ node_modules
 *.db-journal
 static/**/*
 ecosystem.config.js
+ecosystem-green.config.js
+ecosystem-blue.config.js
 
